@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <form action="/quote" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol" type="text"/>
+            <small id="passwordHelpBlock" class="form-text text-muted">
+                Symbol should be a valid stock ticker symbol. You can search for symbols <a href="https://www.marketwatch.com/tools/quotes/lookup.asp">here</a>.
+            </small>
+        </div>
+        <button class="btn btn-primary" type="submit">Get Quote</button>
+    </form>
+{% endblock %}

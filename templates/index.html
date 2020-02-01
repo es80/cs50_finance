@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+<table class="table table-sm table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Current Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in table %}
+        <tr>
+            <td>{{ row["symbol"] }}</td>
+            <td>{{ row["name"] }}</td>
+            <td>{{ row["quantity"] }}</td>
+            <td>{{ row["price"] | usd }}</td>
+            <td>{{ row["subtotal"] | usd }}</td>
+
+            <form action="/buy" method="post">
+                <input type="hidden" name="symbol" value="{{ row["symbol"] }}" type="text"/>
+                <td><input autocomplete="off" class="form-control form-control-sm" name="shares" placeholder="Qty" type="number" min="1"></td>
+                <td><button class="btn btn-primary btn-sm" type="submit">Buy</button></td>
+            </form>
+
+            <form action="/sell" method="post">
+                <input type="hidden" name="symbol" value="{{ row["symbol"] }}" type="text"/>
+                <td><input autocomplete="off" class="form-control form-control-sm" name="shares" placeholder="Qty" type="number" min="1" max="{{ row["quantity"] }}"></td>
+                <td><button class="btn btn-danger btn-sm" type="submit">Sell</button></td>
+            </form>
+        </tr>
+        {% if loop.last %}
+        <tr><td colspan="5"></td></tr>
+        {% endif %}
+        {% endfor %}
+        <tr>
+            <td>CASH</td>
+            <td colspan="3"></td>
+            <td>{{ cash | usd }}</td>
+        </tr>
+        <tr class="table-primary">
+            <td>TOTAL ASSETS</td>
+            <td colspan="3"></td>
+            <td>{{ total | usd }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

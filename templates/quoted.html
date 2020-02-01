@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <p>The current price for one share of {{ quote["name"] }}
+        {% if quote["name"] != quote["symbol"] %}
+            ({{ quote["symbol"] }})
+        {% endif %}
+            is {{ quote["price"] | usd }}.
+    </p>
+{% endblock %}

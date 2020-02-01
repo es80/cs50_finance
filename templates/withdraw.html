@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Withdraw
+{% endblock %}
+
+{% block main %}
+    <p>Current cash balance: {{ cash | usd }}.</p>
+    <form action="/withdraw" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="amount" placeholder="$0.00" type="text"/>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" name="password" placeholder="Password" type="password" aria-describedby="passwordHelpBlock">
+        </div>
+        <button class="btn btn-primary" type="submit">Withdraw</button>
+    </form>
+{% endblock %}

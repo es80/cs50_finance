@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+<table class="table table-sm table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Time</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in table %}
+        <tr>
+            <td>{{ row["symbol"] }}</td>
+            <td>{{ row["name"] }}</td>
+            <td>{{ row["type"] }}</td>
+            <td>{{ row["quantity"] }}</td>
+            {% if row["price"] %}
+                <td>{{ row["price"] | usd }}</td>
+            {% else %}
+                <td></td>
+            {% endif %}
+            <td>{{ row["subtotal"] | usd }}</td>
+            <td>{{ row["datetime"] | f_time }}</td>
+            <td>{{ row["datetime"] | f_date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

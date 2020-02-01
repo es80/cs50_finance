@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Account
+{% endblock %}
+
+{% block main %}
+    <form action="/change_password" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="old_password" placeholder="Current Password" type="password"/>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" name="new_password" placeholder="New Password" type="password" aria-describedby="passwordHelpBlock">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" name="new_confirmation" placeholder="Confirm New Password" type="password" aria-describedby="passwordHelpBlock"/>
+            <small id="passwordHelpBlock" class="form-text text-muted">
+                Your password must be 8-20 characters long and must include both upper-case and lower-case letters and at least one number.
+            </small>
+        </div>
+        <button class="btn btn-primary" type="submit">Change Password</button>
+    </form>
+    <div class="account"></div>
+    <form action="/delete_user" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="password" placeholder="Password" type="password"/>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="check1" name="confirmation" value="confirmed">
+            <label class="form-check-label" for="check1">I confirm I wish to delete my account and all associated data.</label>
+        </div>
+        <button class="btn btn-danger" type="submit">Delete Account</button>
+    </form>
+{% endblock %}
