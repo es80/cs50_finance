@@ -1,4 +1,4 @@
 Flask_Session==0.3.1
 Flask==1.0.2
-Werkzeug==0.14.1
+werkzeug>=0.15.3
 Flask_SQLAlchemy==2.3.2.dev20180630
